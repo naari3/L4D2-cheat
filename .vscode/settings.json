@@ -1,0 +1,9 @@
+{
+    "editor.formatOnSave": true,
+    "rust-analyzer.check.command": "clippy",
+    "rust-analyzer.check.targets": [
+        "i686-pc-windows-msvc"
+    ],
+    "rust-analyzer.checkOnSave.target": "nightly-i686-pc-windows-msvc",
+    "rust-analyzer.check.allTargets": false
+}

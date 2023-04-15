@@ -1,0 +1,25 @@
+[package]
+name = "hello-hud"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[[bin]]
+name = "hello_injector"
+path = "src/main.rs"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+name = "hello_hud"
+
+[dependencies]
+hudhook = { version = "0.4.0", git = "https://github.com/veeenu/hudhook", rev = "acfdfe3cf290d539f2d346e905a3e1bab202dd6a" }
+imgui = "0.9.0"
+once_cell = "1.17.1"
+read-process-memory = "0.1.6"
+windows = { version = "*", features = [
+    "Win32_System_Console",
+    "Win32_System_Diagnostics_ToolHelp",
+    "Win32_Foundation",
+    "Win32_UI_Input_KeyboardAndMouse",
+] }
