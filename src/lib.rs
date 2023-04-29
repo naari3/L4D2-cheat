@@ -1,4 +1,6 @@
 #![feature(abi_thiscall)]
+#![feature(unboxed_closures)]
+#![feature(tuple_trait)]
 #![windows_subsystem = "windows"]
 use std::fs::File;
 use std::io::Write;
@@ -21,7 +23,7 @@ use windows::Win32::System::Diagnostics::ToolHelp::{
 use windows::Win32::System::Memory::{
     VirtualProtect, PAGE_EXECUTE_READWRITE, PAGE_PROTECTION_FLAGS,
 };
-use windows::Win32::UI::Input::KeyboardAndMouse::{GetAsyncKeyState, VK_J};
+use windows::Win32::UI::Input::KeyboardAndMouse::{GetAsyncKeyState, VK_J, VK_K};
 
 mod l4d2_structs;
 
@@ -231,6 +233,10 @@ impl ImguiRenderLoop for L4D2Hud {
                         self.server_base_address + 0x8376B8,
                         vec![0x0, 0x28, 0xC, 0x1414],
                     ) = self.ammo;
+                }
+                if GetAsyncKeyState(VK_K.0 as _) == -32768 {
+                    write_log!("Jumping\n");
+                    (*player).jump();
                 }
             });
     }
